@@ -1,8 +1,8 @@
+import { plans, type Plan as TPlan } from '~/constants/plans';
 import { RadioGroup, Switch } from '@headlessui/react';
 import Image from 'next/image';
 import { cn } from '~/utils/cn';
 
-export type TPlan = 'arcade' | 'advanced' | 'pro';
 export type TBilling = 'monthly' | 'yearly';
 
 export const Plan: React.FC<{
@@ -24,72 +24,30 @@ export const Plan: React.FC<{
 
       <div className="flex flex-col gap-6">
         <RadioGroup value={plan} onChange={setPlan} className="grid gap-3 lg:grid-cols-3">
-          <RadioGroup.Option value="arcade">
-            {({ checked }) => (
-              <div
-                className={cn(
-                  'flex cursor-pointer items-center gap-4 rounded-lg border p-4 lg:flex-col lg:items-start lg:gap-10',
-                  checked ? 'border-purplish-blue bg-alabaster' : 'border-light-gray',
-                )}
-              >
-                <Image src="/icon-arcade.svg" alt="Arcade icon" width={40} height={40} />
-
-                <div>
-                  <p className="font-bold text-marine-blue">Arcade</p>
-                  <p className="font-medium text-cool-gray">
-                    ${billing === 'monthly' ? '9/mo' : '90/yr'}
-                  </p>
-                  {billing === 'yearly' && (
-                    <p className="text-sm font-medium text-marine-blue">2 months free</p>
+          {Object.entries(plans).map(([key, { icon, name, monthlyPrice, yearlyPrice }]) => (
+            <RadioGroup.Option key={key} value={key}>
+              {({ checked }) => (
+                <div
+                  className={cn(
+                    'flex cursor-pointer items-center gap-4 rounded-lg border p-4 lg:flex-col lg:items-start lg:gap-10',
+                    checked ? 'border-purplish-blue bg-alabaster' : 'border-light-gray',
                   )}
-                </div>
-              </div>
-            )}
-          </RadioGroup.Option>
-          <RadioGroup.Option value="advanced">
-            {({ checked }) => (
-              <div
-                className={cn(
-                  'flex cursor-pointer items-center gap-4 rounded-lg border p-4 lg:flex-col lg:items-start lg:gap-10',
-                  checked ? 'border-purplish-blue bg-alabaster' : 'border-light-gray',
-                )}
-              >
-                <Image src="/icon-advanced.svg" alt="Arcade icon" width={40} height={40} />
+                >
+                  <Image src={icon} alt={`${name} icon`} width={40} height={40} />
 
-                <div>
-                  <p className="font-bold text-marine-blue">Advanced</p>
-                  <p className="font-medium text-cool-gray">
-                    ${billing === 'monthly' ? '12/mo' : '120/yr'}
-                  </p>
-                  {billing === 'yearly' && (
-                    <p className="text-sm font-medium text-marine-blue">2 months free</p>
-                  )}
+                  <div>
+                    <p className="font-bold text-marine-blue">{name}</p>
+                    <p className="font-medium text-cool-gray">
+                      ${billing === 'monthly' ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
+                    </p>
+                    {billing === 'yearly' && (
+                      <p className="text-sm font-medium text-marine-blue">2 months free</p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </RadioGroup.Option>
-          <RadioGroup.Option value="pro">
-            {({ checked }) => (
-              <div
-                className={cn(
-                  'flex cursor-pointer items-center gap-4 rounded-lg border p-4 lg:flex-col lg:items-start lg:gap-10',
-                  checked ? 'border-purplish-blue bg-alabaster' : 'border-light-gray',
-                )}
-              >
-                <Image src="/icon-pro.svg" alt="Arcade icon" width={40} height={40} />
-
-                <div>
-                  <p className="font-bold text-marine-blue">Pro</p>
-                  <p className="font-medium text-cool-gray">
-                    ${billing === 'monthly' ? '15/mo' : '150/yr'}
-                  </p>
-                  {billing === 'yearly' && (
-                    <p className="text-sm font-medium text-marine-blue">2 months free</p>
-                  )}
-                </div>
-              </div>
-            )}
-          </RadioGroup.Option>
+              )}
+            </RadioGroup.Option>
+          ))}
         </RadioGroup>
 
         <div className="flex items-center justify-center gap-6 rounded-lg bg-alabaster p-4">

@@ -1,13 +1,14 @@
 'use client';
 
-import type { TBilling, TPlan } from './plan';
+import type { Plan as TPlan } from '~/constants/plans';
+import type { TSelectedAddOns } from './add-on';
+import type { TBilling } from './plan';
 import type { TInfo } from './info';
-import type { TAddons } from './add-ons';
 import { useState } from 'react';
 import { cn } from '~/utils/cn';
 import { Info } from './info';
 import { Plan } from './plan';
-import { AddOns } from './add-ons';
+import { AddOn } from './add-on';
 
 export const Form: React.FC = () => {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
@@ -21,7 +22,7 @@ export const Form: React.FC = () => {
   const [plan, setPlan] = useState<TPlan>('arcade');
   const [billing, setBilling] = useState<TBilling>('yearly');
 
-  const [addons, setAddons] = useState<TAddons>({
+  const [selectedAddOns, setSelectedAddOns] = useState<TSelectedAddOns>({
     online: false,
     storage: false,
     customizableProfile: false,
@@ -72,9 +73,9 @@ export const Form: React.FC = () => {
         />
       )}
       {step === 2 && (
-        <AddOns
-          addons={addons}
-          setAddons={setAddons}
+        <AddOn
+          selectedAddOns={selectedAddOns}
+          setSelectedAddOns={setSelectedAddOns}
           billing={billing}
           prevStep={() => setStep(1)}
           nextStep={() => setStep(3)}
