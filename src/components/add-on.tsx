@@ -25,11 +25,10 @@ export const AddOn: React.FC<{
         <p className="font-medium text-cool-gray">Add-ons help enhance your gaming experience.</p>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3" role="group">
         {Object.entries(addOns).map(([key, { name, description, monthlyPrice, yearlyPrice }]) => (
-          <button
+          <div
             key={key}
-            type="button"
             onClick={() =>
               setSelectedAddOns({ ...selectedAddOns, [key]: !selectedAddOns[key as keys] })
             }
@@ -41,6 +40,9 @@ export const AddOn: React.FC<{
             )}
           >
             <span
+              role="checkbox"
+              aria-checked={selectedAddOns[key as keys]}
+              aria-labelledby={`${key}-label`}
               className={cn(
                 'grid h-5 w-5 place-content-center rounded border',
                 selectedAddOns[key as keys] && 'bg-purplish-blue',
@@ -52,14 +54,16 @@ export const AddOn: React.FC<{
             </span>
 
             <div>
-              <p className="font-bold text-marine-blue">{name}</p>
+              <label id={`${key}-label`} className="font-bold text-marine-blue">
+                {name}
+              </label>
               <p className="font-medium text-cool-gray">{description}</p>
             </div>
 
             <p className="ms-auto font-medium text-purplish-blue">
               +${billing === 'monthly' ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
             </p>
-          </button>
+          </div>
         ))}
       </div>
     </div>
