@@ -4,8 +4,16 @@ import { useState } from 'react';
 import { cn } from '~/utils/cn';
 import { Info } from './info';
 
+import type { FormSchema } from './info';
+
 export const Form: React.FC = () => {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
+
+  const [info, setInfo] = useState<FormSchema>({
+    name: '',
+    email: '',
+    phone: '',
+  });
 
   return (
     <div className="relative flex min-h-screen w-screen flex-col rounded-lg bg-white lg:min-h-fit lg:w-fit lg:flex-row lg:p-4">
@@ -40,7 +48,7 @@ export const Form: React.FC = () => {
         </ul>
       </div>
 
-      {step === 0 && <Info />}
+      {step === 0 && <Info info={info} setInfo={setInfo} nextStep={() => setStep(1)} />}
     </div>
   );
 };

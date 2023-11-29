@@ -1,4 +1,5 @@
 import { forwardRef, useId } from 'react';
+import { cn } from '~/utils/cn';
 
 type Props = {
   id?: string;
@@ -13,16 +14,19 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className="flex w-full flex-col gap-1">
-        <div className="flex justify-between gap-2">
-          <label htmlFor={customId || id} className="text-marine-blue w-fit">
+        <div className="flex justify-between gap-2 text-sm">
+          <label htmlFor={customId || id} className="w-fit text-marine-blue">
             {label}
           </label>
 
-          {error && <p className="text-strawberry-red font-bold">{error}</p>}
+          {error && <p className="font-bold text-strawberry-red">{error}</p>}
         </div>
 
         <input
-          className="text-marine-blue focus:border-purplish-blue border-light-gray rounded-lg border px-4 py-3 font-medium focus:outline-none"
+          className={cn(
+            'rounded-lg border border-light-gray px-4 py-3 font-medium text-marine-blue focus:border-purplish-blue focus:outline-none',
+            error && 'border-strawberry-red',
+          )}
           type="text"
           id={customId || id}
           placeholder={placeholder}
