@@ -25,7 +25,7 @@ export const Summary: React.FC<{
 
   return (
     <div className="flex h-full flex-col justify-between bg-magnolia lg:w-[42rem] lg:bg-transparent">
-      <div className="absolute left-4 right-4 top-32 flex h-fit flex-col gap-6 rounded-lg bg-white px-8 py-10 lg:static lg:h-full lg:px-24">
+      <div className="absolute left-4 right-4 top-32 flex h-fit flex-col gap-8 rounded-lg bg-white px-8 py-10 lg:static lg:h-full lg:px-24">
         {isConfirmed ? (
           <div className="grid h-full place-content-center gap-8 py-16 text-center">
             <Image
@@ -59,7 +59,11 @@ export const Summary: React.FC<{
                   <p className="font-medium text-marine-blue">
                     {plans[plan].name} ({billing[0]?.toUpperCase() + billing.slice(1)})
                   </p>
-                  <button type="button" onClick={backToPlan} className="text-cool-gray underline">
+                  <button
+                    type="button"
+                    onClick={backToPlan}
+                    className="text-cool-gray underline hover:text-purplish-blue focus:text-purplish-blue"
+                  >
                     Change
                   </button>
                 </div>
@@ -108,7 +112,7 @@ export const Summary: React.FC<{
           <button
             type="button"
             onClick={prevStep}
-            className="font-medium text-cool-gray transition-colors hover:text-marine-blue active:text-marine-blue"
+            className="font-medium text-cool-gray transition-colors hover:text-marine-blue focus:text-marine-blue"
           >
             Go Back
           </button>

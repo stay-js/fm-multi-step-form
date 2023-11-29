@@ -19,7 +19,7 @@ export const AddOn: React.FC<{
   nextStep: () => void;
 }> = ({ selectedAddOns, setSelectedAddOns, billing, prevStep, nextStep }) => (
   <div className="flex h-full flex-col justify-between bg-magnolia lg:min-w-[42rem] lg:bg-transparent">
-    <div className="absolute left-4 right-4 top-32 flex h-fit flex-col gap-6 rounded-lg bg-white px-8 py-10 lg:static lg:h-full lg:px-24">
+    <div className="absolute left-4 right-4 top-32 flex h-fit flex-col gap-8 rounded-lg bg-white px-8 py-10 lg:static lg:h-full lg:px-24">
       <div className="flex flex-col gap-3">
         <h1 className="text-3xl font-bold text-marine-blue">Pick add-ons</h1>
         <p className="font-medium text-cool-gray">Add-ons help enhance your gaming experience.</p>
@@ -34,7 +34,7 @@ export const AddOn: React.FC<{
               setSelectedAddOns({ ...selectedAddOns, [key]: !selectedAddOns[key as keys] })
             }
             className={cn(
-              'flex items-center gap-4 rounded-lg border p-3 text-start',
+              'flex items-center gap-4 rounded-lg border p-3 text-start hover:border-purplish-blue focus:border-purplish-blue',
               selectedAddOns[key as keys]
                 ? 'border-purplish-blue bg-alabaster'
                 : 'border-light-gray',
@@ -68,7 +68,7 @@ export const AddOn: React.FC<{
       <button
         type="button"
         onClick={prevStep}
-        className="font-medium text-cool-gray transition-colors hover:text-marine-blue active:text-marine-blue"
+        className="font-medium text-cool-gray transition-colors hover:text-marine-blue focus:text-marine-blue"
       >
         Go Back
       </button>

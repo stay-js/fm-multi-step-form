@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 import { Form } from '~/components/form';
 
-const title = 'Frontend Mentor | Age calculator app';
+const title = 'Frontend Mentor | Multi-step form';
 const description =
-  'This is a solution to the Age calculator app challenge on Frontend Mentor. Built with Next.js and Tailwind CSS.';
+  'This is a solution to the Multi-step form challenge on Frontend Mentor. Built with Next.js and Tailwind CSS.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://fm-age-calculator.znagy.hu'),
+  metadataBase: new URL('https://fm-multi-step-form.znagy.hu'),
 
   authors: [{ name: 'Zétény Nagy', url: 'https://znagy.hu' }],
   creator: 'Zétény Nagy',
 
   keywords:
-    'frontend mentor, frontend, mentor, fem, age calculator, age, calculator, challenge, next.js, nextjs, react, react-hook-form, zod, tailwind, tailwindcss',
+    'frontend mentor, frontend, mentor, fem, age calculator, age, calculator, challenge, next.js, nextjs, react, react-hook-form, zod, headlessui, tailwind, tailwindcss',
 
   title,
 
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: 'website',
-    url: `https://fm-age-calculator.znagy.hu`,
+    url: 'https://fm-multi-step-form.znagy.hu',
     title: description,
     siteName: title,
     locale: 'en-US',

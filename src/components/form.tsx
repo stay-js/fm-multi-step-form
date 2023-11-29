@@ -30,7 +30,7 @@ export const Form: React.FC = () => {
   });
 
   return (
-    <div className="relative flex min-h-screen w-screen flex-col rounded-lg bg-white lg:min-h-fit lg:w-fit lg:flex-row lg:p-4">
+    <div className="relative flex min-h-screen w-screen flex-col rounded-2xl bg-white lg:min-h-fit lg:w-fit lg:flex-row lg:p-4">
       <div className="relative isolate flex gap-4 ">
         <picture className="w-full">
           <source
