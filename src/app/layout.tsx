@@ -7,7 +7,7 @@ import '~/styles/globals.css';
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#f0f6ff55',
+  themeColor: 'hsl(217, 100%, 97%)',
   colorScheme: 'light',
 };
 
