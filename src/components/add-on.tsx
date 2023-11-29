@@ -30,7 +30,7 @@ export const AddOn: React.FC<{
             key={key}
             onClick={() => setSelectedAddOns((value) => ({ ...value, [key]: !value[key as keys] }))}
             className={cn(
-              'flex items-center gap-4 rounded-lg border p-3 text-start hover:border-purplish-blue focus:border-purplish-blue',
+              'flex cursor-pointer items-center gap-4 rounded-lg border p-3 text-start hover:border-purplish-blue focus:border-purplish-blue',
               selectedAddOns[key as keys]
                 ? 'border-purplish-blue bg-alabaster'
                 : 'border-light-gray',
