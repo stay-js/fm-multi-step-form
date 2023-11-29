@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import type { TBilling } from './plan';
 import Image from 'next/image';
 import { cn } from '~/utils/cn';
@@ -13,7 +14,7 @@ type keys = keyof typeof addOns;
 
 export const AddOn: React.FC<{
   selectedAddOns: TSelectedAddOns;
-  setSelectedAddOns: (addOns: TSelectedAddOns) => void;
+  setSelectedAddOns: Dispatch<SetStateAction<TSelectedAddOns>>;
   billing: TBilling;
   prevStep: () => void;
   nextStep: () => void;
@@ -29,9 +30,7 @@ export const AddOn: React.FC<{
         {Object.entries(addOns).map(([key, { name, description, monthlyPrice, yearlyPrice }]) => (
           <div
             key={key}
-            onClick={() =>
-              setSelectedAddOns({ ...selectedAddOns, [key]: !selectedAddOns[key as keys] })
-            }
+            onClick={() => setSelectedAddOns((value) => ({ ...value, [key]: !value[key as keys] }))}
             className={cn(
               'flex items-center gap-4 rounded-lg border p-3 text-start hover:border-purplish-blue focus:border-purplish-blue',
               selectedAddOns[key as keys]

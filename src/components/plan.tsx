@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { plans, type Plan as TPlan } from '~/constants/plans';
 import { RadioGroup, Switch } from '@headlessui/react';
 import Image from 'next/image';
@@ -7,9 +8,9 @@ export type TBilling = 'monthly' | 'yearly';
 
 export const Plan: React.FC<{
   plan: TPlan;
-  setPlan: (plan: TPlan) => void;
+  setPlan: Dispatch<SetStateAction<TPlan>>;
   billing: TBilling;
-  setBilling: (billing: TBilling) => void;
+  setBilling: Dispatch<SetStateAction<TBilling>>;
   prevStep: () => void;
   nextStep: () => void;
 }> = ({ plan, setPlan, billing, setBilling, prevStep, nextStep }) => (
@@ -61,7 +62,7 @@ export const Plan: React.FC<{
 
           <Switch
             checked={billing === 'yearly'}
-            onChange={() => setBilling(billing === 'yearly' ? 'monthly' : 'yearly')}
+            onChange={() => setBilling((value) => (value === 'yearly' ? 'monthly' : 'yearly'))}
             className="relative inline-flex h-6 w-11 items-center rounded-full bg-marine-blue"
           >
             <span

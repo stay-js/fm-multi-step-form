@@ -42,5 +42,4 @@ Users should be able to:
 
 ## TODO
 
-- [ ] Properly type setStates
 - [ ] Maybe add screenshots to README

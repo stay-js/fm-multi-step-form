@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -22,7 +23,7 @@ export type TInfo = z.infer<typeof formSchema>;
 
 export const Info: React.FC<{
   info: TInfo;
-  setInfo: (data: TInfo) => void;
+  setInfo: Dispatch<SetStateAction<TInfo>>;
   nextStep: () => void;
 }> = ({ info, setInfo, nextStep }) => {
   const {
