@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from './input';
+import { BottomNavigation, Input, Title } from './ui';
 
 export const formSchema = z.object({
   name: z.string().min(1, { message: 'This field is required' }),
@@ -37,17 +37,9 @@ export const Info: React.FC<{
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex min-h-full flex-col justify-between gap-8 bg-magnolia lg:h-fit lg:w-[42rem] lg:bg-transparent"
-    >
-      <div className="z-10 mx-4 mt-32 flex h-fit flex-col gap-8 rounded-lg bg-white px-8 py-10 lg:m-0 lg:min-h-full lg:px-24">
-        <div className="flex flex-col gap-3">
-          <h1 className="text-3xl font-bold text-marine-blue">Personal Info</h1>
-          <p className="font-medium text-cool-gray">
-            Please provide your name, email address, and phone number.
-          </p>
-        </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="page-container">
+      <div className="page-content">
+        <Title title="Your Info">Please provide your name, email address, and phone number.</Title>
 
         <div className="flex flex-col gap-6">
           <Input
@@ -76,14 +68,7 @@ export const Info: React.FC<{
         </div>
       </div>
 
-      <div className="mt-auto flex items-center justify-end bg-white p-4 lg:px-24">
-        <button
-          type="submit"
-          className="rounded-lg bg-marine-blue px-6 py-3 font-medium text-white transition-colors hover:bg-purplish-blue active:bg-purplish-blue"
-        >
-          Next Step
-        </button>
-      </div>
+      <BottomNavigation nextStepType="submit" />
     </form>
   );
 };

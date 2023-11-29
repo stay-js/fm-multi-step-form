@@ -43,4 +43,3 @@ Users should be able to:
 ## TODO
 
 - [ ] Maybe add screenshots to README
-- [ ] Button, Title components

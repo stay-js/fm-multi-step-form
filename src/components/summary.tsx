@@ -4,6 +4,7 @@ import { type Plan, plans } from '~/constants/plans';
 import { useState } from 'react';
 import Image from 'next/image';
 import { addOns } from '~/constants/add-ons';
+import { BottomNavigation, Title } from './ui';
 
 export const Summary: React.FC<{
   plan: Plan;
@@ -23,8 +24,8 @@ export const Summary: React.FC<{
   });
 
   return (
-    <div className="flex min-h-full flex-col justify-between gap-8 bg-magnolia lg:h-fit lg:w-[42rem] lg:bg-transparent">
-      <div className="z-10 mx-4 mt-32 flex h-fit flex-col gap-8 rounded-lg bg-white px-8 py-10 lg:m-0 lg:min-h-full lg:px-24">
+    <div className="page-container">
+      <div className="page-content">
         {isConfirmed ? (
           <div className="grid h-full place-content-center gap-8 py-16 text-center">
             <Image
@@ -45,12 +46,7 @@ export const Summary: React.FC<{
           </div>
         ) : (
           <>
-            <div className="flex flex-col gap-3">
-              <h1 className="text-3xl font-bold text-marine-blue">Finishing up</h1>
-              <p className="font-medium text-cool-gray">
-                Double-check everything looks OK before confirming.
-              </p>
-            </div>
+            <Title title="Finishing up">Double-check everything looks OK before confirming.</Title>
 
             <div className="flex flex-col gap-4 rounded-lg bg-alabaster p-4">
               <div className="flex items-center justify-between gap-4">
@@ -107,23 +103,7 @@ export const Summary: React.FC<{
       </div>
 
       {!isConfirmed && (
-        <div className="mt-auto flex items-center justify-between bg-white p-4 lg:px-24">
-          <button
-            type="button"
-            onClick={prevStep}
-            className="font-medium text-cool-gray transition-colors hover:text-marine-blue focus:text-marine-blue"
-          >
-            Go Back
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setIsConfirmed(true)}
-            className="rounded-lg bg-purplish-blue px-6 py-3 font-medium text-white transition-colors hover:bg-marine-blue active:bg-marine-blue"
-          >
-            Confirm
-          </button>
-        </div>
+        <BottomNavigation prevStep={prevStep} confirm={() => setIsConfirmed(true)} />
       )}
     </div>
   );

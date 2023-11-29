@@ -3,6 +3,7 @@ import type { TBilling } from './plan';
 import Image from 'next/image';
 import { cn } from '~/utils/cn';
 import { addOns } from '~/constants/add-ons';
+import { BottomNavigation, Title } from './ui';
 
 export type TSelectedAddOns = {
   online: boolean;
@@ -19,12 +20,9 @@ export const AddOn: React.FC<{
   prevStep: () => void;
   nextStep: () => void;
 }> = ({ selectedAddOns, setSelectedAddOns, billing, prevStep, nextStep }) => (
-  <div className="flex min-h-full flex-col justify-between gap-8 bg-magnolia lg:h-fit lg:w-[42rem] lg:bg-transparent">
-    <div className="z-10 mx-4 mt-32 flex h-fit flex-col gap-8 rounded-lg bg-white px-8 py-10 lg:m-0 lg:min-h-full lg:px-24">
-      <div className="flex flex-col gap-3">
-        <h1 className="text-3xl font-bold text-marine-blue">Pick add-ons</h1>
-        <p className="font-medium text-cool-gray">Add-ons help enhance your gaming experience.</p>
-      </div>
+  <div className="page-container">
+    <div className="page-content">
+      <Title title="Pick add-ons">Add-ons help enhance your gaming experience.</Title>
 
       <div className="flex flex-col gap-3" role="group">
         {Object.entries(addOns).map(([key, { name, description, monthlyPrice, yearlyPrice }]) => (
@@ -67,22 +65,6 @@ export const AddOn: React.FC<{
       </div>
     </div>
 
-    <div className="mt-auto flex items-center justify-between bg-white p-4 lg:px-24">
-      <button
-        type="button"
-        onClick={prevStep}
-        className="font-medium text-cool-gray transition-colors hover:text-marine-blue focus:text-marine-blue"
-      >
-        Go Back
-      </button>
-
-      <button
-        type="button"
-        onClick={nextStep}
-        className="rounded-lg bg-marine-blue px-6 py-3 font-medium text-white transition-colors hover:bg-purplish-blue active:bg-purplish-blue"
-      >
-        Next Step
-      </button>
-    </div>
+    <BottomNavigation prevStep={prevStep} nextStep={nextStep} />
   </div>
 );
