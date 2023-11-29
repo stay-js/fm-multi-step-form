@@ -9,6 +9,7 @@ import { cn } from '~/utils/cn';
 import { Info } from './info';
 import { Plan } from './plan';
 import { AddOn } from './add-on';
+import { Summary } from './summary';
 
 export const Form: React.FC = () => {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
@@ -79,6 +80,15 @@ export const Form: React.FC = () => {
           billing={billing}
           prevStep={() => setStep(1)}
           nextStep={() => setStep(3)}
+        />
+      )}
+      {step === 3 && (
+        <Summary
+          plan={plan}
+          billing={billing}
+          selectedAddOns={selectedAddOns}
+          backToPlan={() => setStep(1)}
+          prevStep={() => setStep(2)}
         />
       )}
     </div>
