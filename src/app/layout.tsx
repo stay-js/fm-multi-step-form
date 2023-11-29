@@ -7,7 +7,7 @@ import '~/styles/globals.css';
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#bfe2fd',
+  themeColor: '#f0f6ff55',
   colorScheme: 'light',
 };
 
@@ -19,7 +19,7 @@ const ubuntu = Ubuntu({
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en" className="antialiased">
-    <body className={cn('bg-light-blue', ubuntu.className)}>{children}</body>
+    <body className={cn('bg-magnolia', ubuntu.className)}>{children}</body>
   </html>
 );
 
