@@ -14,8 +14,8 @@ export const Plan: React.FC<{
   prevStep: () => void;
   nextStep: () => void;
 }> = ({ plan, setPlan, billing, setBilling, prevStep, nextStep }) => (
-  <div className="flex min-h-full flex-col justify-between bg-magnolia lg:w-[42rem] lg:bg-transparent">
-    <div className="absolute left-4 right-4 top-32 flex h-fit flex-col gap-8 rounded-lg bg-white px-8 py-10 lg:static lg:h-full lg:px-24">
+  <div className="flex min-h-full flex-col justify-between gap-8 bg-magnolia lg:h-fit lg:w-[42rem] lg:bg-transparent">
+    <div className="z-10 mx-4 mt-32 flex h-fit flex-col gap-8 rounded-lg bg-white px-8 py-10 lg:mt-0 lg:min-h-full lg:gap-0 lg:px-24">
       <div className="flex flex-col gap-3">
         <h1 className="text-3xl font-bold text-marine-blue">Select your plan</h1>
         <p className="font-medium text-cool-gray">

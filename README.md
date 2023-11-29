@@ -42,5 +42,4 @@ Users should be able to:
 
 ## TODO
 
-- [ ] Background absolute, content relative
 - [ ] Maybe add screenshots to README

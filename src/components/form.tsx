@@ -31,7 +31,7 @@ export const Form: React.FC = () => {
 
   return (
     <div className="relative flex min-h-screen w-screen flex-col rounded-2xl bg-white lg:min-h-fit lg:w-fit lg:flex-row lg:p-4">
-      <div className="relative isolate flex gap-4 ">
+      <div className="absolute flex w-full gap-4 lg:relative lg:w-fit">
         <picture className="w-full">
           <source
             srcSet="/bg-sidebar-desktop.svg"
@@ -41,7 +41,7 @@ export const Form: React.FC = () => {
           <img src="/bg-sidebar-mobile.svg" className="w-full" alt="" />
         </picture>
 
-        <ul className="absolute flex w-full justify-center gap-6 p-10 text-white lg:inset-0 lg:flex-col">
+        <ul className="absolute flex w-full justify-center gap-6 p-10 text-white lg:inset-0 lg:flex-col lg:justify-start">
           {['Your Info', 'Select Plan', 'Add-ons', 'Summary'].map((title, index) => (
             <li className="flex items-center gap-4" key={title}>
               <div
