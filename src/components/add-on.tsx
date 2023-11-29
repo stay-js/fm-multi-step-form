@@ -41,7 +41,7 @@ export const AddOn: React.FC<{
               aria-checked={selectedAddOns[key as keys]}
               aria-labelledby={`${key}-label`}
               className={cn(
-                'grid h-5 w-5 place-content-center rounded border',
+                'grid h-5 w-5 flex-shrink-0 place-content-center rounded border',
                 selectedAddOns[key as keys] && 'bg-purplish-blue',
               )}
             >
