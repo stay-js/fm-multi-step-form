@@ -18,20 +18,20 @@ export const formSchema = z.object({
     }),
 });
 
-export type FormSchema = z.infer<typeof formSchema>;
+export type TInfo = z.infer<typeof formSchema>;
 
 export const Info: React.FC<{
-  info: FormSchema;
-  setInfo: (data: FormSchema) => void;
+  info: TInfo;
+  setInfo: (data: TInfo) => void;
   nextStep: () => void;
 }> = ({ info, setInfo, nextStep }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormSchema>({ resolver: zodResolver(formSchema), defaultValues: info });
+  } = useForm<TInfo>({ resolver: zodResolver(formSchema), defaultValues: info });
 
-  const onSubmit: SubmitHandler<FormSchema> = (data) => {
+  const onSubmit: SubmitHandler<TInfo> = (data) => {
     setInfo(data);
     nextStep();
   };
@@ -39,7 +39,7 @@ export const Info: React.FC<{
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex h-full flex-col justify-between bg-light-blue lg:bg-transparent"
+      className="flex h-full flex-col justify-between bg-magnolia lg:min-w-[42rem] lg:bg-transparent"
     >
       <div className="absolute left-4 right-4 top-32 flex h-fit flex-col gap-6 rounded-lg bg-white px-8 py-10 lg:static lg:h-full lg:px-24">
         <div className="flex flex-col gap-3">

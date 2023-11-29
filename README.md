@@ -43,3 +43,7 @@ Users should be able to:
 - [Tailwind CSS](https://tailwindcss.com)
 
 ## TODO
+
+- [ ] Properly type setStates
+- [ ] Break add-ons to components
+- [ ] Break plans to components
