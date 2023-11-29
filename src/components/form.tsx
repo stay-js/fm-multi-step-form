@@ -1,14 +1,11 @@
 'use client';
 
 import type { Plan as TPlan } from '~/constants/plans';
-import type { TSelectedAddOns } from './add-on';
-import type { TBilling } from './plan';
-import type { TInfo } from './info';
+import { type TInfo, Info } from './info';
+import { type TBilling, Plan } from './plan';
+import { type TSelectedAddOns, AddOn } from './add-on';
 import { useState } from 'react';
 import { cn } from '~/utils/cn';
-import { Info } from './info';
-import { Plan } from './plan';
-import { AddOn } from './add-on';
 import { Summary } from './summary';
 
 export const Form: React.FC = () => {

@@ -1,10 +1,9 @@
 import type { TBilling as Billing } from './plan';
 import type { TSelectedAddOns as SelectedAddOns } from './add-on';
-import type { Plan } from '~/constants/plans';
+import { type Plan, plans } from '~/constants/plans';
 import { useState } from 'react';
 import Image from 'next/image';
 import { addOns } from '~/constants/add-ons';
-import { plans } from '~/constants/plans';
 
 export const Summary: React.FC<{
   plan: Plan;

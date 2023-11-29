@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react';
-import { plans, type Plan as TPlan } from '~/constants/plans';
+import { type Plan as TPlan, plans } from '~/constants/plans';
 import { RadioGroup, Switch } from '@headlessui/react';
 import Image from 'next/image';
 import { cn } from '~/utils/cn';
