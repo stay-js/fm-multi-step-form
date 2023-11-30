@@ -6,9 +6,9 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [Built with](#built-with)
-- [TODO](#todo)
 
 ## Overview
 
@@ -26,6 +26,20 @@ Users should be able to:
   - The email address is not formatted correctly
   - A step is submitted, but no selection has been made
 
+### Screenshots
+
+![Desktop Step 1](./screenshots/desktop-step-1.png)
+![Step 1 Error](./screenshots/step-1-error.png)
+![Desktop Step 2](./screenshots/desktop-step-2.png)
+![Desktop Step 3](./screenshots/desktop-step-3.png)
+![Desktop Step 4](./screenshots/desktop-step-4.png)
+![Desktop Step 5](./screenshots/desktop-step-5.png)
+![Mobile Step 1](./screenshots/mobile-step-1.png)
+![Mobile Step 2](./screenshots/mobile-step-2.png)
+![Mobile Step 3](./screenshots/mobile-step-3.png)
+![Mobile Step 4](./screenshots/mobile-step-4.png)
+![Mobile Step 5](./screenshots/mobile-step-5.png)
+
 ### Links
 
 - Solution URL: [github.com/stay-js/fm-multi-step-form](https://github.com/stay-js/fm-multi-step-form)
@@ -39,7 +53,3 @@ Users should be able to:
 - [Zod](https://zod.dev)
 - [Headless UI](https://headlessui.dev)
 - [Tailwind CSS](https://tailwindcss.com)
-
-## TODO
-
-- [ ] Maybe add screenshots to README
