@@ -18,3 +18,11 @@ export const addOns = {
     yearlyPrice: 20,
   },
 } as const;
+
+export const defaultValues = {
+  online: false,
+  storage: false,
+  customizableProfile: false,
+} as const;
+
+export type SelectedAddOns = typeof defaultValues;

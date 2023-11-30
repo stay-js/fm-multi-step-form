@@ -20,3 +20,4 @@ export const plans = {
 } as const;
 
 export type Plan = keyof typeof plans;
+export type Billing = 'monthly' | 'yearly';

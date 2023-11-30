@@ -1,30 +1,20 @@
 'use client';
 
-import type { Plan as TPlan } from '~/constants/plans';
-import { type TInfo, Info } from './info';
-import { type TBilling, Plan } from './plan';
-import { type TSelectedAddOns, AddOn } from './add-on';
+import type { Plan as TPlan, Billing } from '~/constants/plans';
+import { type SelectedAddOns, defaultValues as defaultAddons } from '~/constants/add-ons';
+import { type TInfo, Info, defaultValues as defaultInfo } from './info';
 import { useState } from 'react';
 import { cn } from '~/utils/cn';
+import { Plan } from './plan';
+import { AddOn } from './add-on';
 import { Summary } from './summary';
 
 export const Form: React.FC = () => {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
-
-  const [info, setInfo] = useState<TInfo>({
-    name: '',
-    email: '',
-    phone: '',
-  });
-
+  const [info, setInfo] = useState<TInfo>(defaultInfo);
   const [plan, setPlan] = useState<TPlan>('arcade');
-  const [billing, setBilling] = useState<TBilling>('yearly');
-
-  const [selectedAddOns, setSelectedAddOns] = useState<TSelectedAddOns>({
-    online: false,
-    storage: false,
-    customizableProfile: false,
-  });
+  const [billing, setBilling] = useState<Billing>('yearly');
+  const [selectedAddOns, setSelectedAddOns] = useState<SelectedAddOns>(defaultAddons);
 
   return (
     <div className="relative flex min-h-screen w-screen flex-col rounded-2xl bg-white lg:min-h-fit lg:w-fit lg:flex-row lg:p-4">

@@ -1,10 +1,11 @@
-import type { Dispatch, SetStateAction } from 'react';
+'use client';
+
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { BottomNavigation, Input, Title } from './ui';
 
-export const formSchema = z.object({
+const formSchema = z.object({
   name: z.string().min(1, { message: 'This field is required' }),
   email: z
     .string()
@@ -20,9 +21,15 @@ export const formSchema = z.object({
 
 export type TInfo = z.infer<typeof formSchema>;
 
+export const defaultValues: TInfo = {
+  name: '',
+  email: '',
+  phone: '',
+};
+
 export const Info: React.FC<{
   info: TInfo;
-  setInfo: Dispatch<SetStateAction<TInfo>>;
+  setInfo: React.Dispatch<React.SetStateAction<TInfo>>;
   nextStep: () => void;
 }> = ({ info, setInfo, nextStep }) => {
   const {

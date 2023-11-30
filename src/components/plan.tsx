@@ -1,17 +1,16 @@
-import type { Dispatch, SetStateAction } from 'react';
-import { type Plan as TPlan, plans } from '~/constants/plans';
+'use client';
+
+import { type Plan as TPlan, type Billing, plans } from '~/constants/plans';
 import { RadioGroup, Switch } from '@headlessui/react';
 import Image from 'next/image';
 import { cn } from '~/utils/cn';
 import { BottomNavigation, Title } from './ui';
 
-export type TBilling = 'monthly' | 'yearly';
-
 export const Plan: React.FC<{
   plan: TPlan;
-  setPlan: Dispatch<SetStateAction<TPlan>>;
-  billing: TBilling;
-  setBilling: Dispatch<SetStateAction<TBilling>>;
+  setPlan: React.Dispatch<React.SetStateAction<TPlan>>;
+  billing: Billing;
+  setBilling: React.Dispatch<React.SetStateAction<Billing>>;
   prevStep: () => void;
   nextStep: () => void;
 }> = ({ plan, setPlan, billing, setBilling, prevStep, nextStep }) => (

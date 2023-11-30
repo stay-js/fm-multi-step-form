@@ -1,9 +1,9 @@
-import type { TBilling as Billing } from './plan';
-import type { TSelectedAddOns as SelectedAddOns } from './add-on';
-import { type Plan, plans } from '~/constants/plans';
+'use client';
+
+import { type SelectedAddOns, addOns } from '~/constants/add-ons';
+import { type Plan, type Billing, plans } from '~/constants/plans';
 import { useState } from 'react';
 import Image from 'next/image';
-import { addOns } from '~/constants/add-ons';
 import { BottomNavigation, Title } from './ui';
 
 export const Summary: React.FC<{
@@ -15,11 +15,13 @@ export const Summary: React.FC<{
 }> = ({ plan, billing, selectedAddOns, backToPlan, prevStep }) => {
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
-  let total = billing === 'monthly' ? plans[plan].monthlyPrice : plans[plan].yearlyPrice;
+  const isMonthly = billing === 'monthly';
+
+  let total = isMonthly ? plans[plan].monthlyPrice : plans[plan].yearlyPrice;
 
   Object.entries(addOns).forEach(([key, { monthlyPrice, yearlyPrice }]) => {
-    if (selectedAddOns[key as keyof typeof addOns]) {
-      total += billing === 'monthly' ? monthlyPrice : yearlyPrice;
+    if (selectedAddOns[key as keyof typeof selectedAddOns]) {
+      total += isMonthly ? monthlyPrice : yearlyPrice;
     }
   });
 
@@ -64,10 +66,7 @@ export const Summary: React.FC<{
                 </div>
 
                 <span className="font-medium text-marine-blue">
-                  $
-                  {billing === 'monthly'
-                    ? `${plans[plan].monthlyPrice}/mo`
-                    : `${plans[plan].yearlyPrice}/yr`}
+                  ${isMonthly ? `${plans[plan].monthlyPrice}/mo` : `${plans[plan].yearlyPrice}/yr`}
                 </span>
               </div>
 
@@ -77,11 +76,11 @@ export const Summary: React.FC<{
 
                   {Object.entries(addOns).map(
                     ([key, { name, monthlyPrice, yearlyPrice }]) =>
-                      selectedAddOns[key as keyof typeof addOns] && (
+                      selectedAddOns[key as keyof typeof selectedAddOns] && (
                         <div key={key} className="flex justify-between gap-4">
                           <p className="text-cool-gray">{name}</p>
                           <span className="text-marine-blue">
-                            ${billing === 'monthly' ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
+                            ${isMonthly ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
                           </span>
                         </div>
                       ),
@@ -91,11 +90,9 @@ export const Summary: React.FC<{
             </div>
 
             <div className="flex justify-between gap-4 px-4">
-              <p className="text-cool-gray">
-                Total (per {billing === 'monthly' ? 'month' : 'year'})
-              </p>
+              <p className="text-cool-gray">Total (per {isMonthly ? 'month' : 'year'})</p>
               <span className="font-bold text-purplish-blue">
-                +${total}/{billing === 'monthly' ? 'mo' : 'yr'}
+                +${total}/{isMonthly ? 'mo' : 'yr'}
               </span>
             </div>
           </>
