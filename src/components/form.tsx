@@ -1,6 +1,6 @@
 'use client';
 
-import type { Plan as TPlan, Billing } from '~/constants/plans';
+import type { Plan as TPlan } from '~/constants/plans';
 import { type SelectedAddOns, defaultValues as defaultAddons } from '~/constants/add-ons';
 import { type TInfo, Info, defaultValues as defaultInfo } from './info';
 import { useState } from 'react';
@@ -12,8 +12,8 @@ import { Summary } from './summary';
 export const Form: React.FC = () => {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   const [info, setInfo] = useState<TInfo>(defaultInfo);
-  const [plan, setPlan] = useState<TPlan>('arcade');
-  const [billing, setBilling] = useState<Billing>('yearly');
+  const [selectedPlan, setSelectedPlan] = useState<TPlan>('arcade');
+  const [isBillingMonthly, setIsBillingMonthly] = useState<boolean>(false);
   const [selectedAddOns, setSelectedAddOns] = useState<SelectedAddOns>(defaultAddons);
 
   return (
@@ -52,10 +52,10 @@ export const Form: React.FC = () => {
       {step === 0 && <Info info={info} setInfo={setInfo} nextStep={() => setStep(1)} />}
       {step === 1 && (
         <Plan
-          plan={plan}
-          setPlan={setPlan}
-          billing={billing}
-          setBilling={setBilling}
+          selectedPlan={selectedPlan}
+          setSelectedPlan={setSelectedPlan}
+          isBillingMonthly={isBillingMonthly}
+          setIsBillingMonthly={setIsBillingMonthly}
           prevStep={() => setStep(0)}
           nextStep={() => setStep(2)}
         />
@@ -64,15 +64,15 @@ export const Form: React.FC = () => {
         <AddOn
           selectedAddOns={selectedAddOns}
           setSelectedAddOns={setSelectedAddOns}
-          billing={billing}
+          isBillingMonthly={isBillingMonthly}
           prevStep={() => setStep(1)}
           nextStep={() => setStep(3)}
         />
       )}
       {step === 3 && (
         <Summary
-          plan={plan}
-          billing={billing}
+          selectedPlan={selectedPlan}
+          isBillingMonthly={isBillingMonthly}
           selectedAddOns={selectedAddOns}
           backToPlan={() => setStep(1)}
           prevStep={() => setStep(2)}

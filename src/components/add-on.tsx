@@ -1,6 +1,5 @@
 'use client';
 
-import type { Billing } from '~/constants/plans';
 import { type SelectedAddOns, addOns } from '~/constants/add-ons';
 import Image from 'next/image';
 import { cn } from '~/utils/cn';
@@ -9,10 +8,10 @@ import { BottomNavigation, Title } from './ui';
 export const AddOn: React.FC<{
   selectedAddOns: SelectedAddOns;
   setSelectedAddOns: React.Dispatch<React.SetStateAction<SelectedAddOns>>;
-  billing: Billing;
+  isBillingMonthly: boolean;
   prevStep: () => void;
   nextStep: () => void;
-}> = ({ selectedAddOns, setSelectedAddOns, billing, prevStep, nextStep }) => (
+}> = ({ selectedAddOns, setSelectedAddOns, isBillingMonthly, prevStep, nextStep }) => (
   <div className="page-container">
     <div className="page-content">
       <Title title="Pick add-ons">Add-ons help enhance your gaming experience.</Title>
@@ -55,7 +54,7 @@ export const AddOn: React.FC<{
               </div>
 
               <p className="ms-auto font-medium text-purplish-blue">
-                +${billing === 'monthly' ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
+                +${isBillingMonthly ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
               </p>
             </div>
           );

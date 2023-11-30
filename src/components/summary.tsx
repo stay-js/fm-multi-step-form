@@ -1,27 +1,25 @@
 'use client';
 
 import { type SelectedAddOns, addOns } from '~/constants/add-ons';
-import { type Plan, type Billing, plans } from '~/constants/plans';
+import { type Plan, plans } from '~/constants/plans';
 import { useState } from 'react';
 import Image from 'next/image';
 import { BottomNavigation, Title } from './ui';
 
 export const Summary: React.FC<{
-  plan: Plan;
-  billing: Billing;
+  selectedPlan: Plan;
+  isBillingMonthly: boolean;
   selectedAddOns: SelectedAddOns;
   backToPlan: () => void;
   prevStep: () => void;
-}> = ({ plan, billing, selectedAddOns, backToPlan, prevStep }) => {
+}> = ({ selectedPlan, isBillingMonthly, selectedAddOns, backToPlan, prevStep }) => {
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
-  const isMonthly = billing === 'monthly';
-
-  let total = isMonthly ? plans[plan].monthlyPrice : plans[plan].yearlyPrice;
+  let total = isBillingMonthly ? plans[selectedPlan].monthlyPrice : plans[selectedPlan].yearlyPrice;
 
   Object.entries(addOns).forEach(([key, { monthlyPrice, yearlyPrice }]) => {
     if (selectedAddOns[key as keyof typeof selectedAddOns]) {
-      total += isMonthly ? monthlyPrice : yearlyPrice;
+      total += isBillingMonthly ? monthlyPrice : yearlyPrice;
     }
   });
 
@@ -54,7 +52,7 @@ export const Summary: React.FC<{
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="font-medium text-marine-blue">
-                    {plans[plan].name} ({billing[0]?.toUpperCase() + billing.slice(1)})
+                    {plans[selectedPlan].name} ({isBillingMonthly ? 'Monthly' : 'Yearly'})
                   </p>
                   <button
                     type="button"
@@ -66,7 +64,10 @@ export const Summary: React.FC<{
                 </div>
 
                 <span className="font-medium text-marine-blue">
-                  ${isMonthly ? `${plans[plan].monthlyPrice}/mo` : `${plans[plan].yearlyPrice}/yr`}
+                  $
+                  {isBillingMonthly
+                    ? `${plans[selectedPlan].monthlyPrice}/mo`
+                    : `${plans[selectedPlan].yearlyPrice}/yr`}
                 </span>
               </div>
 
@@ -80,7 +81,7 @@ export const Summary: React.FC<{
                         <div key={key} className="flex justify-between gap-4">
                           <p className="text-cool-gray">{name}</p>
                           <span className="text-marine-blue">
-                            ${isMonthly ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
+                            ${isBillingMonthly ? `${monthlyPrice}/mo` : `${yearlyPrice}/yr`}
                           </span>
                         </div>
                       ),
@@ -90,9 +91,9 @@ export const Summary: React.FC<{
             </div>
 
             <div className="flex justify-between gap-4 px-4">
-              <p className="text-cool-gray">Total (per {isMonthly ? 'month' : 'year'})</p>
+              <p className="text-cool-gray">Total (per {isBillingMonthly ? 'month' : 'year'})</p>
               <span className="font-bold text-purplish-blue">
-                +${total}/{isMonthly ? 'mo' : 'yr'}
+                +${total}/{isBillingMonthly ? 'mo' : 'yr'}
               </span>
             </div>
           </>
