@@ -46,7 +46,9 @@ export const Info: React.FC<{
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="page-container">
       <div className="page-content">
-        <Title title="Your Info">Please provide your name, email address, and phone number.</Title>
+        <Title title="Personal Info">
+          Please provide your name, email address, and phone number.
+        </Title>
 
         <div className="flex flex-col gap-6">
           <Input
