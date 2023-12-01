@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   creator: 'Zétény Nagy',
 
   keywords:
-    'frontend mentor, frontend, mentor, fem, age calculator, age, calculator, challenge, next.js, nextjs, react, react-hook-form, zod, headlessui, tailwind, tailwindcss',
+    'frontend mentor, frontend, mentor, fem, multi step form, form challenge, next.js, nextjs, react, react-hook-form, zod, headlessui, tailwind, tailwindcss',
 
   title,
 
